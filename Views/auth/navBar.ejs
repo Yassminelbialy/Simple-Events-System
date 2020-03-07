@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/font-awesome.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: orangered;">
+            <a class="navbar-brand" href="#">Administrator</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/speaker/list">Speakers <span class="sr-only">(current)</span></a>
+                    </li>
+                   
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/event/list">Events</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/event/add">Add Events</a>
+                    </li>
+                    
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/logout" method="GET"> 
+                    <label class="mr-sm-2" type="text" style="border: 1px solid black; padding: 3px;">Welcome <%= userName %></label>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+</body>
+
+</html>

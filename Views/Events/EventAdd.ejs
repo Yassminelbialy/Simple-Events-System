@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Event</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <!--Custom styles-->
+    <link rel="stylesheet" type="text/css" href="../../CSS/styles.css">
+    <style>
+        input {
+            height: 40px;
+            width: 230px;
+            display: block;
+            margin-bottom: 15px;
+            margin-left: 90px;
+            border-radius: 10px;
+            padding-left: 5px;
+        }
+
+        label {
+            /* margin-top: 20px; */
+            color: #fff;
+            margin-left: 15px;
+        }
+
+        select {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100" style="position: absolute;left: 500px;">
+            <div class="card" style="height: auto;">
+                <div class="card-header">
+                    <h3>Add Event</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="/event/add" method="POST">
+                       
+                        <div class="input-group form-group">
+                            <label for="eventName">Event name:</label>
+                            <input type="text" class="form-control" required name="eventName">
+                        </div>
+                        <div class="input-group form-group">
+                            <label for="date">choose Date</label>
+                            <input type="date" class="form-control" required name="date">
+                        </div>
+                        <div class="input-group form-group">
+
+                            <!-- ---------Main--------------- -->
+                            <label for="mainSpeaker">Main speaker:</label>
+                            <select id="mainSpeaker" name="mainSpeaker">
+                                <%speakers.forEach(s=>{%>
+                                <option value="<%=s._id %>"><%=s.userName %></option>
+                                <%})%>
+
+                            </select>
+                        </div>
+                        <div class="input-group form-group">
+                            <!-- -------------other -->
+                            <label for="otherSpeaker">Other speakers:</label>
+                            <select id="otherSpeaker" name="otherSpeaker" multiple>
+                                <%speakers.forEach(s=>{%>
+                                <option value=" <%=s._id %>"><%=s.userName %></option>
+                                <%})%>
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="ADD" class="btn float-right login_btn"
+                                style="margin-top: 20px;">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/font-awesome.css" rel="stylesheet" />
+</head>
+
+<body style="background-color: rgb(178, 188, 189);">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: orangered;">
+            <label class="navbar-brand" href="#">Speaker</label>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/speaker/edit/<%=userData._id%>"> Update Info <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/logout" method="GET">
+                    <label class="mr-sm-2" type="text" style="border: 1px solid black; padding: 3px;">Welcome
+                        <%= userData.userName %></label>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+                </form>
+                
+            </div>
+        </nav>
+        <img src="../../images/Capture.JPG" style="border-radius: 50%; height: 150px; display: inline-block;">
+
+    </div>
+    <!-- --------------------- -->
+    <div class="container mt-4">
+        <h2 class="pb-2 mt-4 mb-2 border-bottom">
+            Subscribed Events
+        </h2>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Event Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% eventsData.forEach( (event , i) => { %>
+                <% if(event.mainSpeaker == userData._id) { %>
+                <tr>
+                    <th scope="row"> <%= i + 1 %> </th>
+                    <td> <%= event.eventName %> </td>
+                    <td>Main Speaker</td>
+                    <td> <%- moment(event.date).utc().format('YYYY-MM-DD') %> </td>
+                </tr>
+                <% } else if(event.otherSpeaker.includes(userData._id)) { %>
+                <tr>
+                    <th scope="row"> <%= i + 1 %> </th>
+                    <td> <%= event.eventName %> </td>
+                    <td>Secondary Speaker</td>
+                    <td> <%- moment(event.date).utc().format('YYYY-MM-DD') %></td>
+                </tr>
+                <% } %>
+                <% }) %>
+        </table>
+    </div>
+
+</body>
+
+</html>

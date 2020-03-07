@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include("../auth/navBar")-%>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/font-awesome.css" rel="stylesheet" />
+    <script>
+        function deleteEvent(id, speakerObj) {
+            $.ajax({
+                url: "http://localhost:8088/event/delete",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ id }),
+                dataType: "json",
+                success: function (result) {
+                    $(speakerObj).parents("tr").remove();
+                },
+                error: function (error) {
+                    console.log(error + "");
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body style="background-color: rgb(178, 188, 189);">
+    <table class="table text-center bg-dark text-light" style="width: auto; margin-left: 320px; margin-top: 50px;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Event Date</th>
+                <th>Main Speaker</th>
+                <th>Other Speaker</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <%events.forEach(e=>{%>
+            <tr>
+                <td><%=e._id %></td>
+                <td><%=e.eventName %></td>
+                <td><%- moment(e.date).utc().format('YYYY-MM-DD') %></td>
+                <td><%= e.mainSpeaker ? e.mainSpeaker.userName :"no main speaker" %></td>
+                <td>
+                    <% for (var i =0; i< e.otherSpeaker.length; i++) { %>
+                    <%=e.otherSpeaker[i].userName %> <br>
+                    <% } %>
+                </td>
+               
+                <td><a href="/event/edit/<%=e._id %>" class="btn btn-success"> Edit </button></td>
+                <td><a href="/event/delete/<%=e._id %>" class="btn btn-danger" > Delete </button>
+            </tr>
+            <%})%>
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+
+</body>
+
+</html>
