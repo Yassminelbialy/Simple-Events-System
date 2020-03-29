@@ -1,5 +1,5 @@
 # Simple-Events-System
-Web site used for handling events and speakers info , made by NodeJs, Vuejs and mongoDB
+Web site used for handling events and speakers info , made by NodeJs, engine view and mongoDB
 
 <h2>you can do</h2>
 <pre>
